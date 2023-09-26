@@ -1,0 +1,25 @@
+parameters:
+  - name: destroy
+    type: boolean
+    default: false
+
+- task: CmdLine@2
+  displayName: Terraform Plan
+  inputs:
+    script: |
+        cd $(Build.SourcesDirectory)
+        terraform plan "$command_variables"
+    env: 
+      command_variables: $(command_variables)
+  condition: ${{ eq(parameters.destroy, false) }}
+
+- task: CmdLine@2
+  displayName: Terraform Plan Destroy
+  inputs:
+    script: |
+        cd $(Build.SourcesDirectory)
+        terraform plan -destroy "$command_variables"
+    env: 
+      command_variables: $(command_variables)
+  condition: ${{ eq(parameters.destroy, true) }}
+

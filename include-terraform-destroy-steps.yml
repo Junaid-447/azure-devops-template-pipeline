@@ -1,0 +1,9 @@
+- task: CmdLine@2
+  displayName: Terraform Destroy
+  inputs:
+    script: |
+        cd $(Build.SourcesDirectory)
+        terraform destroy "$command_variables"
+    env: 
+      command_variables: $(command_variables)
+

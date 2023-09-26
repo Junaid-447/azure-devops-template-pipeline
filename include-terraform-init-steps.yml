@@ -1,0 +1,6 @@
+- task: CmdLine@2
+  displayName: Terraform Initialize
+  inputs:
+    script: |
+        cd $(Build.SourcesDirectory)
+        terraform init

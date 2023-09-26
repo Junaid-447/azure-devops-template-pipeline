@@ -1,0 +1,14 @@
+pool:
+  vmImage: 'ubuntu-latest'
+  
+steps:
+- task: CmdLine@2
+  displayName: Install Terraform
+  inputs:
+    script: |
+      mkdir -p ~/temp && cd ~/temp
+      wget https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip
+      unzip terraform_0.13.6_linux_amd64.zip
+      chmod +x terraform
+      sudo mv terraform /usr/local/bin/
+      terraform version
